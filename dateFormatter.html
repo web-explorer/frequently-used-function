@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>dateFormatter</title>
+</head>
+<body>
+<script type="text/javascript">
+	function dateFormatter(formatter, date){
+		date = date ? new Date(date) : new Date // new Date <==> new Date()
+		const Y = date.getFullYear() + '' // getFullYear()方法返回一个表示年份的 4 位数字。
+			  M = date.getMonth() + 1 // getMonth()方法返回表示月份的数字(0-11,一月为0，二月为1，以此类推)。
+			  D = date.getDate() // getDate()方法返回月份的某一天。
+			  h = date.getHours() // getHours()方法返回时间的小时字段。
+			  m = date.getMinutes() // getMinutes()方法返回时间的分钟字段。
+			  s = date.getSeconds() // getSeconds()方法返回时间的秒字段
+
+		return formatter.replace(/YYYY|yyyy/g, Y)
+						.replace(/YY|yy/g, Y.substr(2, 2))
+						.replace(/MM/g, (M <10 ? '0' : '') + M)
+						.replace(/DD/g, (D < 10 ? '0' : '') + D)
+						.replace(/HH|hh/g, (h < 10 ? '0' : '') + h)
+						.replace(/mm/g, (m < 10 ? '0' : '') + m)
+						.replace(/ss/g, (s < 10 ? '0' : '') + s)
+	}
+	console.log(dateFormatter('YYYY-MM-DD HH:mm', '1995/02/15 13:55')) // 1995-02-15 13:55
+</script>
+</body>
+</html>
